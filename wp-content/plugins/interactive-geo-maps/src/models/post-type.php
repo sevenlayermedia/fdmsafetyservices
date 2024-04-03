@@ -98,9 +98,9 @@ function igmaps_model() {
 			'text_domain' => 'interactive-geo-maps',
 			'overrides'   => [
 				'labels'        => [
-					'name'                  => __( 'Maps', 'interactive-geo-maps' ),
+					'name'                  => __( 'MapGeo', 'interactive-geo-maps' ),
 					'singular_name'         => __( 'Map', 'interactive-geo-maps' ),
-					'menu_name'             => __( 'Maps', 'interactive-geo-maps' ),
+					'menu_name'             => __( 'MapGeo', 'interactive-geo-maps' ),
 					'name_admin_bar'        => __( 'Map', 'interactive-geo-maps' ),
 					'add_new'               => __( 'Add New Map', 'interactive-geo-maps' ),
 					'add_new_item'          => __( 'Add New Map', 'interactive-geo-maps' ),
@@ -167,7 +167,7 @@ function igmaps_model() {
 			'can_export'          => true,
 			'exclude_from_search' => true,
 			'capability_type'     => $capability,
-			'menu_icon'           => 'dashicons-admin-site',
+			'menu_icon'           => 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0zMS40NjcgMzguMjgyQzIzLjA1ODMgMjUuMjAxOCAzMi40NSA3Ljk5OTQ1IDQ3Ljk5OTggNy45OTk0NUM2My41NDk2IDcuOTk5NDUgNzIuOTQxMyAyNS4yMDE4IDY0LjUzMjYgMzguMjgyTDQ5LjE4MjYgNjIuMTU5OEM0OC42MjkxIDYzLjAyMDggNDcuMzcwNSA2My4wMjA4IDQ2LjgxNzEgNjIuMTU5OEwzMS40NjcgMzguMjgyWk01NS45OTk5IDI3Ljk5OTVDNTUuOTk5OSAzMi40MTc4IDUyLjQxODIgMzUuOTk5NSA0Ny45OTk5IDM1Ljk5OTVDNDMuNTgxNiAzNS45OTk1IDM5Ljk5OTkgMzIuNDE3OCAzOS45OTk5IDI3Ljk5OTVDMzkuOTk5OSAyMy41ODEyIDQzLjU4MTYgMTkuOTk5NSA0Ny45OTk5IDE5Ljk5OTVDNTIuNDE4MiAxOS45OTk1IDU1Ljk5OTkgMjMuNTgxMiA1NS45OTk5IDI3Ljk5OTVaTTU3LjA3MDMgNjQuMDAwM0M1Ni40MDE2IDY0LjAwMDMgNTUuNzc3MSA2NC4zMzQ1IDU1LjQwNjIgNjQuODkwOUw0OS42NjQgNzMuNTA0MkM0OC44NzI0IDc0LjY5MTYgNDcuMTI3NCA3NC42OTE2IDQ2LjMzNTggNzMuNTA0Mkw0MC41OTM2IDY0Ljg5MDlDNDAuMjIyNyA2NC4zMzQ1IDM5LjU5ODIgNjQuMDAwMyAzOC45Mjk1IDY0LjAwMDNIMzIuODI4M0MzMi4yOTc5IDY0LjAwMDMgMzEuNzg5MiA2NC4yMTEgMzEuNDE0MSA2NC41ODYxTDExLjQxNCA4NC41ODYyQzEwLjE1NDEgODUuODQ2MSAxMS4wNDY0IDg4LjAwMDQgMTIuODI4MiA4OC4wMDA0SDYzLjE3MTZDNjMuNzAyIDg4LjAwMDQgNjQuMjEwNyA4Ny43ODk3IDY0LjU4NTggODcuNDE0Nkw4NC41ODU5IDY3LjQxNDVDODUuODQ1OCA2Ni4xNTQ2IDg0Ljk1MzUgNjQuMDAwMyA4My4xNzE2IDY0LjAwMDNINTcuMDcwM1oiIGZpbGw9IiMzMzMzMzMiLz4KPC9zdmc+Cg==',
 		],
 		'settings' => [
 			'interactive-maps' => [

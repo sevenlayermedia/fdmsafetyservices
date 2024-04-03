@@ -1,10 +1,10 @@
-=== Interactive Geo Maps ===
+=== MapGeo - Interactive Geo Maps ===
 Contributors: carlosmoreirapt, pcarvalho, freemius
 Tags: map, interactive map, world map, travel map, us map
 Requires at least: 5.0
 Tested up to: 6.5
 Requires PHP: 7.0
-Stable tag: 1.6.14
+Stable tag: 1.6.15
 Donate link: https://interactivegeomaps.com
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -98,6 +98,10 @@ You can visit this [article on how to use the plugin together with WP Rocket](ht
 10. Administration 04
 
 == Changelog ==
+
+= 1.6.15 =
+Plugin rebranded name and icon added.
+Small code improvements and bug fixes.
 
 = 1.6.14 =
 Small code improvements and bug fixes.
