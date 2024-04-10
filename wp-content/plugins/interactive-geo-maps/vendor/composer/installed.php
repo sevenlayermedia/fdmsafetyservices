@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'carmoreira/interactive-geo-maps',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => 'fcbfbaf27a5aa32b30d3a9c1ff087cdc47cff1fd',
+        'pretty_version' => '1.6.16.x-dev',
+        'version' => '1.6.16.9999999-dev',
+        'reference' => 'b900d6820178021c0cc2fec757d1115ae8fce1d3',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../build',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'carmoreira/interactive-geo-maps' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => 'fcbfbaf27a5aa32b30d3a9c1ff087cdc47cff1fd',
+            'pretty_version' => '1.6.16.x-dev',
+            'version' => '1.6.16.9999999-dev',
+            'reference' => 'b900d6820178021c0cc2fec757d1115ae8fce1d3',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../build',
             'aliases' => array(),

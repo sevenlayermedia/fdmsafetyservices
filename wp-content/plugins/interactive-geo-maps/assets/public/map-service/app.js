@@ -2035,13 +2035,15 @@ iMapsManager.handleZoom = function (id) {
       zlevel = ev.target.zoomLevel,
       isDrill = im.bool(data.drillDownOnClick),
       // Check if data.liveFilter exists and has the property 'enabled' before accessing it
-      hasLiveFilter = data.liveFilter
-        ? im.bool(data.liveFilter.enabled)
-        : false,
       isDrilling = im.maps[id].isDrilling,
       drilledTo = im.maps[id].drilledTo,
       activeMap = im.filteredMap,
       keepBase = false;
+
+      var hasLiveFilter = false;
+      if(typeof data.liveFilter !== "undefined") {
+        var hasLiveFilter = im.bool(data.liveFilter.enabled);
+      }
 
     // for drilldown
     if (
