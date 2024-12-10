@@ -8,6 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 use ShortPixel\ShortQ\ShortQ as ShortQ;
 use ShortPixel\Controller\CacheController as CacheController;
 use ShortPixel\ShortPixelLogger\ShortPixelLogger as Log;
+use ShortPixel\Model\Image\ImageModel as ImageModel;
 
 
 class MediaLibraryQueue extends Queue
@@ -45,52 +46,100 @@ class MediaLibraryQueue extends Queue
 
    protected function prepare()
    {
-
       $items = $this->queryPostMeta();
       return $this->prepareItems($items);
-
    }
+
+   protected function prepareBulkRestore()
+   {
+      $items = $this->queryOptimizedItems();
+      return $this->prepareItems($items);
+   }
+
+
 
    private function queryPostMeta()
    {
      $last_id = $this->getStatus('last_item_id');
      $limit = $this->q->getOption('enqueue_limit');
      $prepare = array();
+
+     $fastmode = apply_filters('shortpixel/queue/fastmode', false);
+
      global $wpdb;
 
      $sqlmeta = "SELECT DISTINCT post_id FROM " . $wpdb->prefix . "postmeta where (meta_key = %s or meta_key = %s)";
 
+     if ( true === $fastmode)
+     {
+       // This will by definition not optimize everything is things like only-thumbnails are not done.
+       $sqlmeta .= ' and post_id not in (SELECT DISTINCT attach_id from ' . $wpdb->prefix. 'shortpixel_postmeta where parent = %d and status = %d) ';
+     }
+
      $prepare[] = '_wp_attached_file';
      $prepare[] = '_wp_attachment_metadata';
+
+     if (true === $fastmode)
+     {
+        $prepare[] = ImageModel::IMAGE_TYPE_MAIN;
+        $prepare[] = ImageModel::FILE_STATUS_SUCCESS;
+     }
 
      if ($last_id > 0)
      {
         $sqlmeta .= " and post_id < %d ";
-        $prepare [] = intval($last_id);
+        $prepare[] = intval($last_id);
      }
+
      $sqlmeta .= ' order by post_id DESC LIMIT %d ';
      $prepare[] = $limit;
 
      $sqlmeta = $wpdb->prepare($sqlmeta, $prepare);
+     Log::addTemp('SQLPrepare', $sqlmeta);
      $results = $wpdb->get_col($sqlmeta);
 
-     $fs = \wpSPIO()->filesystem();
-     $items = array();
-
+     $items = [];
      foreach($results as $item_id)
      {
-          $items[] = $item_id; 
+          $items[] = $item_id;
      }
 
      // Remove failed object, ie if getImage returned false.
      return array_filter($items);
-
    }
 
-  /* public function queueToMediaItem($queueItem)
+   private function queryOptimizedItems()
    {
-      $id = $queueItem->id;
-      return $fs->getMediaImage($id);
-   } */
+     $last_id = $this->getStatus('last_item_id');
+     $limit = $this->q->getOption('enqueue_limit');
+     $prepare = array();
+     global $wpdb;
+
+     $sql = 'SELECT distinct attach_id from ' . $wpdb->prefix . 'shortpixel_postmeta where status = %d ';
+     $prepare[] = ImageModel::FILE_STATUS_SUCCESS;
+
+     if ($last_id > 0)
+     {
+        $sql .= " and attach_id < %d ";
+        $prepare [] = intval($last_id);
+     }
+
+     $sql .= ' order by attach_id DESC LIMIT %d ';
+     $prepare[] = $limit;
+
+     $sql = $wpdb->prepare($sql, $prepare);
+
+     $results = $wpdb->get_col($sql);
+
+     $items = array();
+
+     foreach($results as $item_id)
+     {
+        $items[] = $item_id;
+     }
+
+     return array_filter($items);
+
+   }
 
 }

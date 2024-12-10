@@ -1,5 +1,7 @@
 <?php
 namespace ShortPixel;
+use ShortPixel\ShortPixelLogger\ShortPixelLogger as Log;
+use ShortPixel\Helper\UiHelper as UiHelper;
 
 if ( ! defined( 'ABSPATH' ) ) {
  exit; // Exit if accessed directly.
@@ -9,17 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 <section class='dashboard panel active' data-panel="dashboard" style='display: block'  >
   <div class="panel-container">
 
-
-    <h3 class="heading"><span><img src="<?php echo esc_url(\wpSPIO()->plugin_url('res/img/robo-slider.png')); ?>"></span>
-      <?php esc_html_e('Welcome to the Bulk Processing page!', 'shortpixel-image-optimiser'); ?>
+  <div class="bulk-welcome">
+    <h3 class="heading">
+      <?php printf(esc_html__('ShortPixel Bulk Image Optimization', 'shortpixel-image-optimiser')); ?>
     </h3>
+    <?php echo UIHelper::getIcon('res/images/illustration/bulk_welcome.svg'); ?>
+  </div>
 
     <div class='interface wrapper'>
 
       <div class='bulk-wrapper'>
         <button type="button" class="button-primary button" id="start-optimize" data-action="open-panel" data-panel="selection" <?php echo ($this->view->error) ? "disabled" : ''; ?>  >
             <span class='dashicons dashicons-controls-play'>&nbsp;</span>
-						<p><?php esc_html_e('Start optimizing','shortpixel-image-optimiser'); ?></p>
+						<p><?php esc_html_e('Start Optimization','shortpixel-image-optimiser'); ?></p>
         </button>
       </div>
 
@@ -38,7 +42,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					'&#x1F913');
 				?>
 
-				</p>
+      </p>
 			</div>
  </div>
 
@@ -73,7 +77,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 <div id="LogModal-Shade" class='sp-modal-shade'></div>
    <div class='dashboard-log'>
 
-      <h3><?php esc_html_e('Previous Bulks', 'shortpixel_image_optimizer'); ?></h3>
+      <h3><?php esc_html_e('Previous Bulk Operations', 'shortpixel_image_optimizer'); ?></h3>
       <?php
         echo "<div class='head'>";
         foreach($this->view->logHeaders as $header)
